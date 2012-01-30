@@ -1,1 +1,170 @@
-tu
+http://www.scanfeld.com/tu/
+
+tu - an extremely compact html, javascript and flex templating engine.
+
+
+EXAMPLES
+
+The following examples will give you a feel for how tu works, and
+you can also check out the reference for a full list of options.
+
+The first element we'll introduce is t (for text), which stores text
+or html. This code t[ht,abcd] makes a text div with abcd as the text.
+
+To set the font family: t[ht,abcd,ff,courier]
+To set the font size: t[ht,abcd,fs,24]
+To set the font weight (bold): t[ht,abcd,fw,b]
+To set the font color: t[ht,abcd,fc,#FF3366]
+To set the text decoration (underline): t[ht,abcd,td,u]
+
+The next element d represents a div more generally, allowing a
+user to define the parameters, as well as any elements within the div.
+So two sets of brackets must be included.
+
+Here is a 30x30 blue div: d[di,b,bg,#0000FF,w,30,h,30]
+
+Here is a div within a div:
+d[di,b,bg,#0000FF,w,30,h,30]
+ [
+  d[di,b,po,r,x,5,y,5,bg,#FF00FF,w,20,h,20][]
+ ]
+
+The calls can be shrunk still further by using functions. The s
+command defines a function including ?a, ?b, ... as the variables:
+
+Here is one function:
+s[A=ction]
+t[di,b,ht,one fun[A]]
+
+Here are two functions strung together:
+s[A=two fun]
+s[B=ction]
+t[di,b,ht,[A-B]s]
+
+Here is a two variable function:
+s[A=t?a var?bes]
+t[di,b,ht,[A;wo,iabl]]
+
+To clone the previous element use cln:
+d[di,b,w,100,h,100,bg,#FF6666][]
+cln[bg,#66FF66][]
+cln[bg,#6666FF][]
+
+The i element adds an image:
+i[sr,dan.gif,w,111,h,111,os,s,ow,2,oc,#666666]
+
+Windows can be created using wi:
+wi
+[po,a,x,250,y,30,w,400,h,200,box,a,boy,a,bbg,[@8gM],
+ tti,Test Window,wss,15]
+[i[sr,dan.gif,w,400,h,400]]
+[]
+
+A 3d flex engine can be called using a script and controlled from
+javascript using the fx element:
+d[di,b,w,402,h,402,ml,10,mt,10,mb,10,bg,#333333][
+ fx[i,flx,po,r,x,1,y,1,w,400,h,400,bg,#000000=   sr,tu.swf,wi,400,he,400,ma,0,bg,#000000,ss,cube.txt][]]
+it[i,spin,it,b,va,spin,rcl,rf[flx=an;xrot;xr;0;-2;2;11;ss]]
+
+The previous example loaded code from cube.txt, while the following
+example includes the script:
+s[A=co;bn;logo.png;bw;180;bh;180;ba;1.0;b
+ fc;0;0;1;1 lc;3;0.333;0.5;0.25;1 fa;]
+d[di,b][fx[i,flx,w,400,h,400,bg,#000000=
+ sr,tu.swf,wi,400,he,400,bg,#000000,ma,0,sp,
+ pu;0;0;1;1:id;box li;5;1;1;0;1 am;0.0 al;0;0;1 sc;0.8;0.8;0.8;scle
+ pt;-1;1;1;a; pt;1;1;1;b; pt;1;-1;1;c; pt;-1;-1;1;d;
+  pt;-1;1;-1;e; pt;1;1;-1;f; pt;1;-1;-1;g; pt;-1;-1;-1;h;
+ [A]a;b;c;d [A]b;f;g;c [A]f;e;h;g [A]e;a;d;h [A]e;f;b;a [A]d;c;g;h
+ fp 3d;0;0;0;6.0;1.5:id;cube;br;0 po][]]
+
+One face:
+d[di,b][fx[i,flx,w,400,h,400,bg,#000000=
+sr,tu.swf,wi,400,he,400,bg,#000000,ma,0,sp,
+pu;0;0;1;1 li;5;1;1;0;1 am;0.0 al;0;0;1 sc;0.8;0.8;0.8;scle
+pt;-1;1;1;a; pt;1;1;1;b; pt;1;-1;1;c; pt;-1;-1;1;d;
+fc;0.667;0.25;1;1 lc;3;0.333;1;1;1 fa;a;b;c;d
+fp 3d;0;0;0;6.0;1.5:br;0 po][]]
+
+Text on a face:
+d[di,b][fx[i,flx,w,400,h,400,bg,#000000=
+sr,tu.swf,wi,400,he,400,bg,#000000,ma,0,sp,
+pu;0;0;1;1 li;5;1;1;0;1 am;0.0 al;0;0;1 sc;0.8;0.8;0.8;scle
+pt;-1;1;1;a; pt;1;1;1;b; pt;1;-1;1;c; pt;-1;-1;1;d;
+co;tx;0.5;ty;0.5;ta;0.5;tv;0.5;tw;0.1;th;0.5;ts;0.05;tlw;5;tlh;0;tls;1;tlv;1;tla;1;
+te;Abcd-Efgh;t fc;0.667;0.25;1;1 lc;3;0.333;1;1;1 fa;a;b;c;d
+fp 3d;0;0;0;6.0;1.5:br;0 po][]]
+
+Four sided box:
+s[B=fc;0;0;1;1 lc;3;0.333;0.5;0.25;1 fa;]
+s[A=co;bn;logo.png;bw;180;bh;180;ba;1.0;b [B]]
+d[di,b][fx[i,flx,w,400,h,400,bg,#000000=
+sr,tu.swf,wi,400,he,400,bg,#000000,ma,0,sp,
+pu;0;0;1;1:id;box li;5;1;1;0;1 am;0.0 al;0;0;1 sc;0.8;0.8;0.8;scle
+pt;-1;1;1;a; pt;1;1;1;b; pt;1;-1;1;c; pt;-1;-1;1;d;
+pt;-1;1;-1;e; pt;1;1;-1;f; pt;1;-1;-1;g; pt;-1;-1;-1;h;
+[A]a;b;c;d [A]b;f;g;c [A]f;e;h;g [A]e;a;d;h
+[B]d;c;b;a [B]c;g;f;b [B]g;h;e;f [B]h;d;a;e
+fp 3d;0;0;0;6.0;1.5:id;cube;br;0 po][]]
+
+Six sided box:
+s[B=fc;0;0;1;1 lc;3;0.333;0.5;0.25;1 fa;]
+s[A=co;bn;logo.png;bw;180;bh;180;ba;1.0;b [B]]
+d[di,b][fx[i,flx,w,400,h,400,bg,#000000=
+sr,tu.swf,wi,400,he,400,bg,#000000,ma,0,sp, pu;0;0;1;1:id;box li;5;1;1;0;1 am;0.0 al;0;0;1 sc;0.8;0.8;0.8;scle
+pt;-1;1;1;a pt;1;1;1;b pt;1;-1;1;c pt;-1;-1;1;d
+pt;-1;1;-1;e pt;1;1;-1;f pt;1;-1;-1;g pt;-1;-1;-1;h
+pt;0;1;1.4;i pt;0;-1;1.4;j pt;1.4;1;0;k pt;1.4;-1;0;l
+[A]a;i;j;d [A]i;b;c;j [A]b;k;l;c [A]k;f;g;l [A]f;e;h;g [A]e;a;d;h
+[B]d;j;i;a [B]j;c;b;i [B]c;l;k;b [B]l;g;f;k [B]g;h;e;f [B]h;d;a;e
+fp 3d;0;0;0;6.0;1.5:id;cube;br;0 po][]]
+
+
+REFERENCE
+
+ELEMENTS
+
+a[][] = reference
+d[][] = div
+i[] = image
+t[] = text
+wi[] = window
+
+PARAMETERS
+
+bi = background-image
+bg = background-color
+bo = border
+cl = class
+cu = cursor ( p=pointer )
+di = display ( b=block i=inline n=none )
+fc = color ( b=#000000 g=#515151 r=#FF0000 w=#FFFFFF )
+ff = font-family ( a=arial )
+fs = font-size
+fw = font-weight ( b=bold )
+h = height
+ha = text-align ( l=left c=center r=right )
+ht = html
+i = id
+it = type ( b=button c=checkbox f=file h=hidden p=password r=radio s=submit t=text )
+le = maxlength
+mb = margin-bottom
+ml = margin-left
+mr = margin-right
+mt = margin-top
+n = name
+os = border-style
+ow = border-width
+ov = overflow ( a=auto h=hidden v=visible )
+ox = overflow-x ( a=auto h=hidden v=visible )
+oy = overflow-y ( a=auto h=hidden v=visible )
+pa = padding
+po = position ( a=absolute r=relative )
+sc = scrolling ( n=no y=yes )
+td = text-decoration ( n=none u=underline )
+va = value
+vi = visibility ( h=hidden i=inherit v=visible )
+w = width
+x = left
+y = top
+z = z-index

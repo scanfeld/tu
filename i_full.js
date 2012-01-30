@@ -272,7 +272,7 @@ Element.implement (
                   V["_in"] += 1
                }
 
-            z = fx ( z, t );
+            z = fix ( z, t );
             b = z.smc ();
             for ( j = 0; j < b.l () - 1; j += 2 )
                {
@@ -345,7 +345,7 @@ Element.implement (
       , r: function ( z )
          {
             /* run */
-            r ( this, fx ( z ) )
+            r ( this, fix ( z ) )
          }
 
       , s: function ()
@@ -889,6 +889,11 @@ P =
             t: "g", n: "sd"
          }
 
+      , sp:
+         {
+            t: "g", n: "sp"
+         }
+
       , sr:
          {
             t: "p", n: "src"
@@ -1266,7 +1271,7 @@ function em ( z )
 function eq ( p )
    {
       /* equation */
-      var z = seq ( fx ( p ) );
+      var z = seq ( fix ( p ) );
       z[0] = tr ( z[0] );
 
       if ( z.length == 1 )
@@ -1674,7 +1679,7 @@ function fwi ()
       for ( i = 0; i < z.length; i ++ ) wicu ( z[i] )
    }
 
-function fx ( y, p )
+function fix ( y, p )
    {
       /* fix */
       var a, b, i, t, v, w, x, yy, z;
@@ -1796,7 +1801,7 @@ function gtm ( d, h )
 function ha ( t, e, p )
    {
       /* handle event */
-      var z = seq ( fx ( p ) );
+      var z = seq ( fix ( p ) );
       var d = O[z[0]];
 
       d.ondragstart = function ()
@@ -2094,9 +2099,9 @@ function p ( y, p )
          }
    }
 
-function plt ( p )
+function fx ( p )
    {
-      /* plot */
+      /* flex */
       var f, he, i, ma, q, sc, sr, wi, y, z;
       q = seq ( p );
       z = d ( q[0] );
@@ -2117,7 +2122,7 @@ function plt ( p )
             if ( y[i] == "sr" ) sr = y[i + 1];
             if ( y[i] == "ss" ) ss = y[i + 1];
             if ( y[i] == "bg" ) bg = y[i + 1];
-            if ( y[i] == "sc" ) sc = y[i + 1]
+            if ( y[i] == "sp" ) sc = y[i + 1]
          }
 
       f = new Swiff ( sr,
@@ -2171,7 +2176,7 @@ function r ( p, z )
             b = cb ( z, a + 1 );
             f = tr ( z.s ( 0, a ) );
             q = tr ( z.s ( a + 1, b ) );
-            if ( f != "st" ) q = fx ( q, p );
+            if ( f != "st" ) q = fix ( q, p );
             if ( f == "p" ) p.p ( q );
 
             else if ( f == "c" )
@@ -2235,7 +2240,7 @@ function r ( p, z )
                }
 
             z = z.s ( b + 1, z.l () );
-            if ( f == "s" ) z = fx ( z );
+            if ( f == "s" ) z = fix ( z );
 
             if ( d instanceof Array )
                {
@@ -2258,7 +2263,7 @@ function r ( p, z )
                {
                   a = ob ( z, 0 );
                   b = cb ( z, a + 1 );
-                  r ( d, fx ( z.s ( a + 1, b ), p ) );
+                  r ( d, fix ( z.s ( a + 1, b ), p ) );
                   z = z.s ( b + 1, z.l () );
 
                   if ( nn ( p.c ) && nn ( d ) && ( nu ( d.add ) || ( d.add != 0 ) ) )
@@ -2273,7 +2278,7 @@ function r ( p, z )
                      {
                         a = ob ( z, 0 );
                         b = cb ( z, a + 1 );
-                        r ( d.sta, fx ( z.s ( a + 1, b ), p ) );
+                        r ( d.sta, fix ( z.s ( a + 1, b ), p ) );
                         z = z.s ( b + 1, z.l () )
                      }
                }
@@ -2319,7 +2324,7 @@ function rgb ( r, g, b )
 function rj ( z )
    {
       /* run javascript */
-      r ( db (), fx ( z[0] ) )
+      r ( db (), fix ( z[0] ) )
    }
 
 function rsz ()
@@ -2331,7 +2336,7 @@ function rsz ()
 function s ( p )
    {
       /* set variable with fix */
-      var z = seq ( fx ( p ) );
+      var z = seq ( fix ( p ) );
       V[tr ( z[0] ) ] = tr ( z[1] );
       return null
    }
@@ -2351,7 +2356,7 @@ function seq ( z )
 
       if ( i >= 0 )
          {
-            a.u ( fx ( z.s ( 0, i ) ) );
+            a.u ( fix ( z.s ( 0, i ) ) );
             a.u ( z.s ( i + 1, z.l () ) )
          }
 
@@ -2652,7 +2657,7 @@ function wi ( p )
 function wics ( p )
    {
       /* content size */
-      s = p.acr.sz ();
+      var s = p.acr.sz ();
       p._cw = mx ( p.wcw, s.x );
       p._ch = mx ( p.wch, s.y )
    }

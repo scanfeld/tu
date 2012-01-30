@@ -2,6 +2,26 @@ http://scanfeld.s3.amazonaws.com/s/tu/index.html
 
 tu - an extremely compact html, javascript and flex templating engine.
 
+FILES
+
+ cube.txt - a text file that sets up a rotating cube in flex.
+ dan.gif - example image
+ i.js - the main include file in condensed form.
+ i_full.js - the main include file in an easier to read form.
+ index.html - the main html page that runs the tu examples.
+ logo.png - example image
+ m.js - the mootools include file in condensed form.
+ m_full.js - the mootools include file in an easier to read form.
+ s.css - style sheet
+ s.gif - spacer image
+ tu.swf - the flex swf file for the flex tu engine.
+
+ i/ - images for the windowing system.
+
+ com/scanfeld/Canvas.as - an extension of Canvas for use in Tu. 
+ com/scanfeld/Label.as - an extension of Label for use in Tu.
+ com/scanfeld/Tu.as - flex 3D engine.
+
 
 EXAMPLES
 
